@@ -47,3 +47,22 @@ Luego abre [http://localhost:3000](http://localhost:3000) en tu navegador
 ├── public/         # Archivos estáticos
 └── package.json    # Configuración y dependencias
 ```
+
+## Para correr la base de datos
+
+
+
+### En Ubuntu/Debian
+
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib -y
+sudo systemctl enable postgresql
+sudo systemctl start postgresql
+```
+
+
+```bash
+sudo -i -u postgres
+psql
+```
