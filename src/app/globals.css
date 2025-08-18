@@ -1,0 +1,48 @@
+/* src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definición de Fuentes Personalizadas (sin cambios) */
+@font-face {
+  font-family: 'FontGotham 800';
+  src: url('/fonts/Gotham-Black.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FontGotham 600';
+  src: url('/fonts/GothamBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FontGotham 400';
+  src: url('/fonts/GothamBook.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Variables CSS para fuentes (sin cambios) */
+:root {
+  --font-gotham-800: 'FontGotham 800', sans-serif;
+  --font-gotham-600: 'FontGotham 600', sans-serif;
+  --font-gotham-400: 'FontGotham 400', sans-serif;
+}
+
+/* --- NUEVA CLASE REUTILIZABLE PARA GLASSMORPHISM --- */
+@layer components {
+  .glass-card-teal {
+    /* --- Estilos base del glassmorphism --- */
+    @apply bg-white/10 backdrop-blur-lg rounded-xl shadow-lg;
+    
+    /* --- Borde constante verde azulado --- */
+    @apply border border-brand-green/60;
+
+    /* --- Transiciones y hover sutil --- */
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:shadow-2xl hover:shadow-brand-green/25 hover:border-brand-green;
+  }
+}
