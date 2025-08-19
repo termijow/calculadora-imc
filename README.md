@@ -61,8 +61,24 @@ sudo systemctl enable postgresql
 sudo systemctl start postgresql
 ```
 
-
 ```bash
 sudo -i -u postgres
 psql
+```
+
+## Configurar la base de datos
+```bash
+CREATE ROLE calculadora_imc WITH LOGIN PASSWORD 'calculadora_imc';
+
+CREATE DATABASE calculadora OWNER calculadora_imc;
+
+\q
+```
+
+```bash
+createdb clinica -U calculadora_imc
+```
+
+```bash
+psql -U calculadora_imc -d calculadora -h localhost -f /home/termihoe/Documents/calculadora-imc/schema.sql
 ```
