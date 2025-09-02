@@ -14,9 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="bg-brand-dark text-white"> {/* Color de fondo por defecto */}
+      <body className="bg-brand-dark text-white">
         <main>{children}</main>
-        {/* Aquí irá el Footer más adelante */}
       </body>
     </html>
   );

@@ -1,4 +1,3 @@
-// src/app/api/pacientes/route.ts
 import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
 
@@ -9,7 +8,7 @@ type Paciente = {
   edad: number;
   peso: number;
   altura: number;
-  genero?: string;
+  genero: string;
   imc?: number;
 };
 
@@ -38,8 +37,18 @@ export async function POST(request: Request) {
     const body = await request.json() as Paciente;
     const { cc, nombre, apellido, edad, peso, altura, genero } = body;
 
-    if (!cc || !nombre || !apellido || !edad || !peso || !altura) {
+    if (!cc || !nombre || !apellido || !edad || !peso || !altura || !genero) {
       return NextResponse.json({ error: 'Todos los campos son obligatorios.' }, { status: 400 });
+    }
+
+    if (edad <= 0 || edad > 120) {
+      return NextResponse.json({ error: 'La edad debe estar entre 1 y 120 años' }, { status: 400 });
+    }
+    if (peso <= 0 || peso > 500) {
+      return NextResponse.json({ error: 'El peso debe estar entre 1 y 500 kg' }, { status: 400 });
+    }
+    if (altura <= 0 || altura > 2.5) {
+      return NextResponse.json({ error: 'La altura debe estar entre 0.5 y 2.5 m' }, { status: 400 });
     }
 
     const query = `
@@ -55,6 +64,10 @@ export async function POST(request: Request) {
     console.error('Error al agregar un paciente:', error);
     if (error.code === '23505') {
       return NextResponse.json({ error: 'La cedula ya existe.' }, { status: 409 });
+    }
+
+    if (error.code === "22003") {
+      return NextResponse.json({ error: 'El numero está fuera de rango.' }, { status: 409 });
     }
     return NextResponse.json({ error }, { status: 500 });
   }

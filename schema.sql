@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS pacientes (
     edad INT NOT NULL,
     peso NUMERIC(5,2) NOT NULL,
     altura NUMERIC(3,2) NOT NULL,
-    genero VARCHAR(10),
+    genero VARCHAR(10) NOT NULL,
     imc NUMERIC(4,2)
 );
 
@@ -41,5 +41,7 @@ VALUES
 ('3006', 'Pedro', 'Ramírez', 50, 110.0, 1.78, 'Masculino'),
 ('3007', 'Sofía', 'Torres', 19, 52.0, 1.65, 'Femenino'),
 ('3008', 'Andrés', 'Pérez', 33, 76.0, 1.80, 'Masculino');
+
+SELECT * FROM pacientes;
 
 \echo '>>> se ejecuto el schema.sql correctamente".'
